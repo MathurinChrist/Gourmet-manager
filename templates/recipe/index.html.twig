@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-3">
+            <h2>Catégories</h2>
+            <ul class="list-group">
+                {% for category in categories %}
+                    <li class="list-group-item">
+                        <strong>{{ category.name }}</strong>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="col-md-9">
+            <h2>Liste des Recettes</h2>
+
+            {% for recipe in recipes %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title">{{ recipe.title }}</h3>
+                        <p class="card-text">{{ recipe.category.name }}</p>
+                        {% if recipe.description %}
+                            <p class="card-text">{{ recipe.description }}</p>
+                        {% endif %}
+
+                        {% if recipe.ingredients|length > 0 %}
+                            <h4>Ingrédients :</h4>
+                            <ul>
+                                {% for ingredient in recipe.ingredients %}
+                                    <li>{{ ingredient.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+
+                        <a href="{{ path('app_recipe_show', {'id': recipe.id}) }}" class="btn btn-primary">Voir la recette</a>
+                    </div>
+                </div>
+            {% else %}
+                <p>Aucune recette trouvée.</p>
+            {% endfor %}
+
+            <div class="mt-4">
+                <a href="{{ path('app_recipe_new') }}" class="btn btn-success">Ajouter une nouvelle recette</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

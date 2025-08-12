@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle recette{% endblock %}
+
+{% block body %}
+    <h1 class="mb-4">Ajouter une Nouvelle Recette</h1>
+
+    {{ form_start(form) }}
+    <div class="mb-3">
+        {{ form_label(form.title, 'Titre de la Recette') }}
+        {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.description, 'Description') }}
+        {{ form_widget(form.description, {'attr': {'class': 'form-control', 'rows': 3}}) }}
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.category, 'Catégorie') }}
+        {{ form_widget(form.category, {'attr': {'class': 'form-select'}}) }}
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.ingredients, 'Ingrédients') }}
+        {{ form_widget(form.ingredients, {'attr': {'class': 'form-control'}}) }}
+        <button type="button" class="btn btn-sm btn-outline-secondary mt-2" id="add-ingredient">
+            Ajouter un ingrédient
+        </button>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Ajouter la Recette</button>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        document.getElementById('add-ingredient').addEventListener('click', function() {
+            // Cette partie sera améliorée avec JavaScript pour ajouter dynamiquement des ingrédients
+            alert('Fonctionnalité à implémenter');
+        });
+    </script>
+{% endblock %}
